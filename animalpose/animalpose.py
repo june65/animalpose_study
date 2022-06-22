@@ -51,7 +51,7 @@ REMOTE_YOLOX_PATH = 'https://storage.googleapis.com/ailia-models/yolox/'
 #비디오 분석 기능 
 file_number = open("number.txt", 'r')
 numbers = str(file_number.read()) 
-IMAGE_PATH="input/input"+ numbers +".jpg"
+IMAGE_PATH="input/input"+ numbers +".png"
 SAVE_IMAGE_PATH = 'output/output'+ numbers +'.png'
 
 
@@ -274,7 +274,7 @@ def vis_pose_result(img, result):
         [51, 255, 51], [0, 255, 0], [0, 0, 255], [255, 0, 0],
         [255, 255, 255]
     ])
-    skeleton = [[1, 2], [1, 3], [2, 4], [1, 5], [2, 5], [5, 6], [6, 8],
+    skeleton = [[8, 9], [1, 3], [2, 4], [1, 5], [2, 5], [5, 6], [6, 8],
                 [7, 8], [6, 9], [9, 13], [13, 17], [6, 10], [10, 14],
                 [14, 18], [7, 11], [11, 15], [15, 19], [7, 12], [12, 16],
                 [16, 20]]
