@@ -520,7 +520,7 @@ def imshow_bboxes(
     Returns:
         ndarray: The image with bboxes drawn on it.
     """
-    """ 박스 삭제 
+
     if isinstance(bboxes, np.ndarray):
         bboxes = [bboxes]
     if not isinstance(colors, list):
@@ -539,7 +539,7 @@ def imshow_bboxes(
             right_bottom = (_bboxes[j, 2], _bboxes[j, 3])
             cv2.rectangle(
                 img, left_top, right_bottom, colors[i], thickness=thickness)
-    """ 
+
     return img
 
 
@@ -637,18 +637,13 @@ def imshow_keypoints(
                             1 - transparency,
                             0,
                             dst=img)
-                        real_value = str(round(((np.sqrt((pos1[0] - pos2[0]) ** 2 + (pos1[1] - pos2[1]) ** 2) / 1) * 29), 2))
-                        cv2.putText(img, real_value , ((int)((pos1[0] + pos2[0]) / 2), (int)((pos1[1] + pos2[1]) / 2)), cv2.FONT_HERSHEY_DUPLEX, 0.5, (0, 0, 0),
-                        1, 1)
                     else:
                         cv2.line(
                             img,
                             pos1,
                             pos2, (int(r), int(g), int(b)),
                             thickness=thickness)
-                        real_value = str(round(((np.sqrt((pos1[0] - pos2[0]) ** 2 + (pos1[1] - pos2[1]) ** 2) / 1) * 29), 2))
-                        cv2.putText(img, real_value , ((int)((pos1[0] + pos2[0]) / 2), (int)((pos1[1] + pos2[1]) / 2)), cv2.FONT_HERSHEY_DUPLEX, 0.5, (0, 0, 0),
-                        1, 1)
+
     return img
 
 
