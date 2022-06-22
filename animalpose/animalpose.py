@@ -6,7 +6,7 @@ import numpy as np
 
 import ailia
 
-sys.path.append('../../util')
+sys.path.append('../util')
 from utils import get_base_parser, update_parser, get_savepath  # noqa: E402
 from model_utils import check_and_download_models  # noqa: E402
 from image_utils import normalize_image  # noqa: E402C
@@ -45,8 +45,16 @@ WEIGHT_YOLOX_PATH = 'yolox_m.opt.onnx'
 MODEL_YOLOX_PATH = 'yolox_m.opt.onnx.prototxt'
 REMOTE_YOLOX_PATH = 'https://storage.googleapis.com/ailia-models/yolox/'
 
-IMAGE_PATH = 'input.jpg'
-SAVE_IMAGE_PATH = 'output.png'
+#IMAGE_PATH = 'input.jpg'
+#SAVE_IMAGE_PATH = 'output.png'
+
+#비디오 분석 기능 
+file_number = open("number.txt", 'r')
+numbers = str(file_number.read()) 
+IMAGE_PATH="input/input"+ numbers +".jpg"
+SAVE_IMAGE_PATH = 'output/output'+ numbers +'.png'
+
+
 IMAGE_SIZE = 256
 
 DETECTION_THRESHOLD = 0.4
