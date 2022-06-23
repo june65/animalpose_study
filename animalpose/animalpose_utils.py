@@ -554,7 +554,7 @@ def imshow_keypoints(
         thickness=1,
         show_keypoint_weight=False):
     """Draw keypoints and limbs on an image.
-
+    
     Args:
             img (str or Tensor): The image to draw poses on. If an image array
                 is given, id will be modified in-place.
@@ -569,8 +569,17 @@ def imshow_keypoints(
                 limbs will not be drawn.
             thickness (int): Thickness of lines.
     """
-
+    
     img_h, img_w, _ = img.shape
+
+    #오류가 있을경우 프린트 X
+    for kpts in pose_result:
+        if pose_kpt_color is not None:
+            assert len(pose_kpt_color) == len(kpts)
+            for kid, kpt in enumerate(kpts):
+                kpt_score = kpt[2]
+                if kpt_score < kpt_score_thr:
+                    return img
 
     for kpts in pose_result:
         # draw each point on image
@@ -596,6 +605,7 @@ def imshow_keypoints(
                         r, g, b = pose_kpt_color[kid]
                         cv2.circle(img, (int(x_coord), int(y_coord)), radius,
                                    (int(r), int(g), int(b)), -1)
+                
 
         # draw limbs
         if skeleton is not None and pose_limb_color is not None:
