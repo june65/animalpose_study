@@ -571,7 +571,6 @@ def imshow_keypoints(
     """
     
     img_h, img_w, _ = img.shape
-
     #오류가 있을경우 프린트 X
     for kpts in pose_result:
         if pose_kpt_color is not None:
@@ -580,7 +579,7 @@ def imshow_keypoints(
                 kpt_score = kpt[2]
                 if kpt_score < kpt_score_thr:
                     return img
-
+    point_num = 1
     for kpts in pose_result:
         # draw each point on image
         if pose_kpt_color is not None:
@@ -590,6 +589,7 @@ def imshow_keypoints(
                 if kpt_score > kpt_score_thr:
                     if show_keypoint_weight:
                         img_copy = img.copy()
+                        img2 = img.copy()
                         r, g, b = pose_kpt_color[kid]
                         cv2.circle(img_copy, (int(x_coord), int(y_coord)),
                                    radius, (int(r), int(g), int(b)), -1)
@@ -601,10 +601,18 @@ def imshow_keypoints(
                             1 - transparency,
                             0,
                             dst=img)
+                       
+                        cv2.putText(img2, str(point_num) , (int(x_coord), int(y_coord))  , cv2.FONT_HERSHEY_DUPLEX, 0.5, (0, 0, 0),
+                        1, 1)
+                        point_num+=1
                     else:
                         r, g, b = pose_kpt_color[kid]
                         cv2.circle(img, (int(x_coord), int(y_coord)), radius,
                                    (int(r), int(g), int(b)), -1)
+                        
+                        cv2.putText(img,  str(point_num) , (int(x_coord)+10, int(y_coord)), cv2.FONT_HERSHEY_DUPLEX, 0.5, (0, 0, 0),
+                        1, 1)
+                        point_num+=1
                 
 
         # draw limbs
